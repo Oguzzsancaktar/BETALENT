@@ -1,0 +1,73 @@
+import { PatchUserDto } from "../dto/patch.user.dto";
+import express from "express";
+import userService from "../services/users.service";
+import argon2 from "argon2";
+import debug from "debug";
+
+const log: debug.Debugger = debug("app:users-controller");
+
+const cloudinary = require("../../utils/cloudinary");
+
+class UsersController {
+  async listUsers(req: express.Request, res: express.Response) {
+    const users = await userService.list(100, 0);
+    res.status(200).send(users);
+  }
+
+  async getUserById(req: express.Request, res: express.Response) {
+    const user = await userService.readById(req.body.id);
+    res.status(200).send(user);
+  }
+
+  async getUserByEmail(req: express.Request, res: express.Response) {
+    const user = await userService.getUserByEmail(req.body.email);
+    res.status(200).send(user);
+  }
+
+  async createUser(req: express.Request, res: express.Response) {
+    req.body.password = await argon2.hash(req.body.password);
+    const userId = await userService.create(req.body);
+    res.status(201).send({ id: userId });
+  }
+
+  async patch(req: express.Request & { file: any }, res: express.Response) {
+    if (req.body.password) {
+      req.body.password = await argon2.hash(req.body.password);
+    }
+
+    try {
+      let result;
+      if (req.file && req.file.path) {
+        result = await cloudinary.uploader.upload(req.file.path);
+        req.body.profile_img = result.public_id;
+        req.body.cloudinary_id = result.secure_url;
+      }
+      const patchedUser = await userService.patchById(req.body.id, req.body);
+      log(patchedUser);
+      res.status(204).send({ patchedUser });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async put(req: express.Request, res: express.Response) {
+    req.body.password = await argon2.hash(req.body.password);
+    log(await userService.putById(req.body.id, req.body));
+    res.status(204).send();
+  }
+
+  async removeUser(req: express.Request, res: express.Response) {
+    log(await userService.deleteById(req.body.id));
+    res.status(204).send();
+  }
+
+  async updatePermissionFlags(req: express.Request, res: express.Response) {
+    const patchUserDto: PatchUserDto = {
+      permissionFlags: parseInt(req.params.permissionFlags),
+    };
+    log(await userService.patchById(req.body.id, patchUserDto));
+    res.status(204).send();
+  }
+}
+
+export default new UsersController();
