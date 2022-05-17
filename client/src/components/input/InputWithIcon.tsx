@@ -20,8 +20,8 @@ interface IStyledProps {
 }
 
 const Container = styled(RowStyled)<IStyledProps>`
-  border-bottom: 1px solid ${props => (props.validationError ? colors.red.primary : colors.green.thirth)};
-  color: ${props => (props.validationError ? colors.red.primary : colors.green.thirth)};
+  border-bottom: 1px solid ${props => (props.validationError ? colors.red.primary : colors.gray.primary)};
+  color: ${props => (props.validationError ? colors.red.primary : colors.gray.primary)};
   margin-bottom: 0.5rem;
   transition: all 0.4s ease-in-out;
 
@@ -35,7 +35,7 @@ const Container = styled(RowStyled)<IStyledProps>`
   }
 `
 const Input = styled.input<IStyledProps>`
-  color: ${props => (props.validationError ? colors.red.primary : colors.green.thirth)};
+  color: ${props => (props.validationError ? colors.red.primary : colors.gray.primary)};
   width: 100%;
   height: 40px;
   background-color: transparent;

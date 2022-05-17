@@ -5,21 +5,19 @@ interface IProps {
   width?: string
   margin?: string
   padding?: string
-  height?: string
 }
-
-const JustifyBetweenRowStyled = styled.div<IProps>`
+const JustifyCenterRowStyled = styled.div<IProps>`
   margin: ${({ margin }) => margin && margin};
   padding: ${({ padding }) => padding && padding};
   width: ${({ width }) => (width ? width : '100%')};
-  height: ${({ height }) => (height ? height : 'auto')};
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `
-const JustifyBetweenRow: React.FC<IProps> = ({ children, ...rest }) => {
-  return <JustifyBetweenRowStyled {...rest}>{children}</JustifyBetweenRowStyled>
+const JustifyCenterRow: React.FC<IProps> = ({ children, ...rest }) => {
+  return <JustifyCenterRowStyled {...rest}>{children}</JustifyCenterRowStyled>
 }
 
-export default JustifyBetweenRow
+export default JustifyCenterRow

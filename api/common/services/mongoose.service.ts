@@ -24,7 +24,7 @@ class MongooseService {
     connectWithRetry = () => {
         log('Attempting MongoDB connection (will retry if needed)');
         mongoose
-            .connect('mongodb://localhost:27017/ailet', this.mongooseOptions)
+            .connect('mongodb://localhost:27017/betalent', this.mongooseOptions)
             .then(() => {
                 console.log("MongoDB is connected")
                 log('MongoDB is connected');

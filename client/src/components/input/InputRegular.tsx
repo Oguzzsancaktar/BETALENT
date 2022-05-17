@@ -17,7 +17,7 @@ interface IStyledProps {
 const Input = styled.input<IStyledProps>`
   width: 100%;
   height: 40px;
-  border: 1px solid ${props => (props.validationError ? colors.red.primary : colors.green.thirth)};
+  border: 1px solid ${props => (props.validationError ? colors.red.primary : colors.gray.primary)};
   background-color: transparent;
   transition: border 0.3s ease-in-out;
   outline: none;

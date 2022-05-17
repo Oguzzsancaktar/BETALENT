@@ -8,7 +8,8 @@ export const PrivateRoute = ({ children }: RouteProps) => {
   } = useAuth()
 
   useEffect(() => {
-    if (!accessToken || !user) window.location.href = '/login'
+    // if (!accessToken || !user) window.location.href = '/login'
+    window.location.href = '/register'
   }, [accessToken, user])
 
   return <>{children}</>

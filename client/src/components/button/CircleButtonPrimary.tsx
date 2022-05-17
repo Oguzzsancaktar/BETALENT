@@ -2,12 +2,11 @@ import colors from '@/constants/colors'
 import React from 'react'
 import styled from 'styled-components'
 
-interface IProps {
-  width?: string
+interface Props {
   content?: string
 }
 
-const ButtonSC = styled.button<Pick<IProps, 'width'>>`
+const CircleButtonSC = styled.button`
   font-family: 'Chillax-Regular';
   cursor: pointer;
   padding: 0.4rem 0.6rem;
@@ -16,14 +15,13 @@ const ButtonSC = styled.button<Pick<IProps, 'width'>>`
   background-color: ${colors.green.primary};
   color: ${colors.green.light};
   transition: background 0.3s ease-in-out;
-  width: ${({ width }) => (width ? width : '100%')};
   &:hover {
-    background-color: ${colors.blue.primary};
+    background-color: ${colors.red.primary};
   }
 `
 
-const Button: React.FC<IProps> = ({ children, ...rest }) => {
-  return <ButtonSC type="submit">{children}</ButtonSC>
+const CircleButtonPrimary: React.FC<Props> = ({ children, ...rest }) => {
+  return <CircleButtonSC type="submit">{children}</CircleButtonSC>
 }
 
-export default Button
+export default CircleButtonPrimary

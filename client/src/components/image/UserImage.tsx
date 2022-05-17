@@ -1,12 +1,29 @@
 import React from 'react'
+import useAccessStore from '@/hooks/useAccessStore'
+import { showModal } from '@/store'
 import { Plus, Trash } from 'react-feather'
+import { AddUserImageModal } from '@/components/modals'
 import { AddButton, Figure, ImageContainer, Picture, RemoveButton, Image } from './Styled'
+import { ESize } from '@/models/Enumarables'
 
 const UserImage = () => {
+  const { useAppDispatch } = useAccessStore()
+  const dispatch = useAppDispatch()
+
+  const openUploadImageModal = () => {
+    dispatch(
+      showModal({
+        title: 'Upload Image',
+        body: <AddUserImageModal />,
+        size: ESize.Medium
+      })
+    )
+  }
+
   return (
     <ImageContainer>
-      {false ? (
-        <AddButton>
+      {true ? (
+        <AddButton onClick={openUploadImageModal}>
           <Plus />
         </AddButton>
       ) : (

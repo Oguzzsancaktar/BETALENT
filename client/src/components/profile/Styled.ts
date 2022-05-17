@@ -19,10 +19,17 @@ export const ListItem = styled.li`
     min-width: calc((100% - 0.5rem) / 3 * 2);
     height: calc((100% - 0.5rem) / 3 * 2);
   }
+
   &:nth-child(2) {
     flex: 1;
     min-width: calc((100% - 0.5rem) / 3);
     height: calc((100% - 0.5rem) / 3 * 2);
+
+    div {
+      &:first-child {
+        margin-bottom: 0.5rem;
+      }
+    }
   }
 
   &:last-child {

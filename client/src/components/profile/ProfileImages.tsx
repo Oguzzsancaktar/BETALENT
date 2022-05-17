@@ -1,5 +1,6 @@
 import React from 'react'
 import { UserImage } from '../image'
+import { Column } from '../layout'
 import { List, ListItem } from './Styled'
 
 const ProfileImages = () => {
@@ -9,7 +10,10 @@ const ProfileImages = () => {
         <UserImage />
       </ListItem>
       <ListItem>
-        <UserImage />
+        <Column>
+          <UserImage />
+          <UserImage />
+        </Column>
       </ListItem>
       <ListItem>
         <UserImage />
