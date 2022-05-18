@@ -5,11 +5,16 @@ interface IProps {
   margin?: string
   padding?: string
   height?: string
+  background?: string
+  minHeight?: string
 }
 const JustifyCenterColumnStyled = styled.div<IProps>`
   margin: ${({ margin }) => margin && margin};
   padding: ${({ padding }) => padding && padding};
   height: ${({ height }) => (height ? height : 'auto')};
+  background: ${({ background }) => (background ? background : 'transparent')};
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : 'auto')};
+  background-size: cover;
   width: 100%;
   padding: 0;
   display: flex;

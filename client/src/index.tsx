@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals'
 import store from '@/store/store'
+import AppRoute from './routes/AppRouter'
+import 'react-datepicker/dist/react-datepicker.css'
 import 'react-toastify/dist/ReactToastify.css'
 import './styles/index.css'
-import AppRoute from './routes/AppRouter'
+
+import './styles/vendors/react-datepicker.css'
+import './styles/vendors/react-select.css'
 
 ReactDOM.render(
   <React.StrictMode>

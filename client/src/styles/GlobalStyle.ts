@@ -207,6 +207,7 @@ input:-webkit-autofill:active {
 }
 
 input:-webkit-autofill {
+  -webkit-text-fill-color: #7babb2;
   -webkit-background-clip: text;
 }
 

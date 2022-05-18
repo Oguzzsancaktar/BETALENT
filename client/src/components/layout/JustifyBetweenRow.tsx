@@ -6,6 +6,7 @@ interface IProps {
   margin?: string
   padding?: string
   height?: string
+  minHeight?: string
 }
 
 const JustifyBetweenRowStyled = styled.div<IProps>`
@@ -13,6 +14,8 @@ const JustifyBetweenRowStyled = styled.div<IProps>`
   padding: ${({ padding }) => padding && padding};
   width: ${({ width }) => (width ? width : '100%')};
   height: ${({ height }) => (height ? height : 'auto')};
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : 'auto')};
+
   display: flex;
   flex-direction: row;
   align-items: center;

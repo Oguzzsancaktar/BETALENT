@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, JustifyBetweenRow, Column, Row, FormErrorMessage } from '@/components'
 import { IUserLoginCredentials } from '@/models'
-import { InputWithIcon } from '../input'
+import { InputWithIcon } from '../input2'
 import { Key, User } from 'react-feather'
 import { isEmailValid, isPasswordValid } from '@/utils/validationUtils'
 import { useAuth } from '@/hooks/useAuth'

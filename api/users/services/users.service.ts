@@ -1,8 +1,8 @@
-import UsersDao from '../daos/users.dao';
-import { CRUD } from '../../common/interfaces/crud.interface';
-import { CreateUserDto } from '../dto/create.user.dto';
-import { PutUserDto } from '../dto/put.user.dto';
-import { PatchUserDto } from '../dto/patch.user.dto';
+import UsersDao from "../daos/users.dao";
+import { CRUD } from "../../common/interfaces/crud.interface";
+import { CreateUserDto } from "../dto/create.user.dto";
+import { PutUserDto } from "../dto/put.user.dto";
+import { PatchUserDto } from "../dto/patch.user.dto";
 
 class UsersService implements CRUD {
   async create(resource: CreateUserDto) {
@@ -33,9 +33,8 @@ class UsersService implements CRUD {
     return UsersDao.getUserByEmail(email);
   }
 
-
   async getUserByEmailWithPassword(email: string) {
-    return UsersDao.getUserByEmailWithPassword(email)
+    return UsersDao.getUserByEmailWithPassword(email);
   }
 }
 

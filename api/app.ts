@@ -17,6 +17,7 @@ import { CommonRoutesConfig } from "./common/common.routes.config";
 
 import { UsersRoutes } from "./users/users.routes.config";
 import { UserImageRoutes } from "./userImages/userImage.routes.config";
+import { RegisterRoutes } from "./register/register.routes.config";
 
 import debug from "debug";
 
@@ -57,6 +58,7 @@ app.use(expressWinston.logger(loggerOptions));
 routes.push(new UsersRoutes(app));
 routes.push(new AuthRoutes(app));
 routes.push(new UserImageRoutes(app));
+routes.push(new RegisterRoutes(app));
 
 const runningMessage = `Server running at http://localhost:${port}`;
 

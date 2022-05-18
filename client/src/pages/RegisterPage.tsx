@@ -5,26 +5,48 @@ import {
   JustifyCenterColumn,
   PageWrapper,
   RegisterForm,
-  FormWrapper
+  FormWrapper,
+  HexagonImage
 } from '@/components'
 import colors from '@/constants/colors'
+import { url } from 'inspector'
+import styled from 'styled-components'
 
+const Left = styled(JustifyCenterColumn)`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`
+const Right = styled(FormWrapper)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 768px) {
+    max-width: none;
+    width: 100%;
+  }
+`
 const RegisterPage = () => {
   return (
     <PageWrapper>
-      <JustifyBetweenRow height="100vh">
-        <JustifyCenterColumn height="100%">
-          <CircleImage
-            size="150px"
+      <JustifyBetweenRow minHeight="100vh">
+        <Left
+          height="100%"
+          minHeight="100vh"
+          background={`url(${window.location.origin + '/assets/images/register-background.svg'})`}
+        >
+          <HexagonImage
+            size="200px"
             borderColor={colors.black.primary}
-            source={window.location.origin + '/assets/images/logo.png'}
+            background={colors.black.primary}
+            source={window.location.origin + '/assets/images/logo-white-centered.png'}
           />
-        </JustifyCenterColumn>
-        <FormWrapper background={colors.black.primary}>
+        </Left>
+        <Right minHeight={'100vh'} background={colors.black.primary}>
           <JustifyCenterColumn height="100%">
             <RegisterForm />
           </JustifyCenterColumn>
-        </FormWrapper>
+        </Right>
       </JustifyBetweenRow>
     </PageWrapper>
   )

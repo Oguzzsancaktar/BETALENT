@@ -26,7 +26,7 @@ const Input = styled.input<IStyledProps>`
   margin-bottom: 0.3rem;
   &:hover,
   &:focus {
-    border-color: ${colors.yellow.primary};
+    border-color: ${colors.green.primary};
   }
 `
 

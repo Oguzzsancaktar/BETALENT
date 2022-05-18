@@ -23,7 +23,7 @@ const colors = Object.freeze({
     secondary: '#99999F'
   },
   red: {
-    primary: '#7babb2'
+    primary: '#ef233c'
   }
 })
 

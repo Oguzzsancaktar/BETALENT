@@ -1,7 +1,8 @@
 export default interface IRegister {
-  firstName: string
-  lastName: string
-  phoneNumber: string
+  _id?: string
+  firstname: string
+  lastname: string
+  phone: string
   email: string
   birthday: string
   city: string

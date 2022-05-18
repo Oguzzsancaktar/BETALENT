@@ -49,10 +49,13 @@ export const Figure = styled.figure`
 export const Picture = styled.picture`
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
-export const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+export const Image = styled.img<{ size?: string }>`
+  width: ${({ size }) => (size ? size : '100%')};
+  height: ${({ size }) => (size ? size : '100%')};
+  object-fit: contain;
   border-radius: 0.3rem;
 `

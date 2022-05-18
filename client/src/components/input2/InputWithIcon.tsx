@@ -26,12 +26,12 @@ const Container = styled(RowStyled)<IStyledProps>`
   transition: all 0.4s ease-in-out;
 
   &:hover {
-    border-bottom: 1px solid ${colors.yellow.primary};
+    border-bottom: 1px solid ${colors.green.primary};
   }
 
   &:focus-within {
-    border-bottom: 1px solid ${colors.yellow.primary};
-    color: ${colors.yellow.primary};
+    border-bottom: 1px solid ${colors.green.primary};
+    color: ${colors.green.primary};
   }
 `
 const Input = styled.input<IStyledProps>`
@@ -45,7 +45,7 @@ const Input = styled.input<IStyledProps>`
   transition: all 0.4s ease-in-out;
 
   &:focus {
-    color: ${colors.yellow.primary};
+    color: ${colors.green.primary};
   }
 `
 const IconContainer = styled.div`

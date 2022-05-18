@@ -1,5 +1,5 @@
-const controlStringLength = (value: string): boolean => {
-  const minNum = 6
+const controlStringLength = (value: string, min?: number): boolean => {
+  const minNum = min || 6
   const result = value.trim().length >= minNum
   return result
 }
@@ -7,6 +7,16 @@ const controlStringLength = (value: string): boolean => {
 export const isUsernameValid = (username: string): boolean => {
   const result = controlStringLength(username)
   return result
+}
+
+export const isBirthdayValid = (birthday: string): boolean => {
+  const result = controlStringLength(birthday, 10)
+  return result
+}
+
+export const isPhoneValid = (phone: string): boolean => {
+  const result = phone.toLowerCase().match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
+  return result !== null ? true : false
 }
 
 export const isEmailValid = (email: string): boolean => {
@@ -17,6 +27,11 @@ export const isEmailValid = (email: string): boolean => {
     )
 
   return result !== null ? true : false
+}
+
+export const isInputStringValid = (value: string): boolean => {
+  const result = controlStringLength(value, 1)
+  return result
 }
 
 export const isPasswordValid = (password: string): boolean => {
