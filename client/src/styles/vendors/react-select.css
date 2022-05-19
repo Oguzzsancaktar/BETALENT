@@ -51,10 +51,18 @@ color: #ef233b83;
   .select__menu .select__menu-list {
     background: #e1fffe93!important;
   }
-.select__menu .select__menu-list .select__option{
-  background: #e1fffe93!important;
-  color: #7babb2!important;
-}
+
+  .select__menu .select__menu-list .select__option{
+    cursor: pointer!important;
+    background: #e1fffe93!important;
+    color: #7babb2!important;
+  }
+
+  .select__menu .select__menu-list .select__option:hover{
+    background: #abfffc93!important;
+    color: #7babb2!important;
+  }
+
 .select__menu .select__menu-list .select__option.select__option--is-selected{
   background: #27cec5!important;
   color: #fff!important;

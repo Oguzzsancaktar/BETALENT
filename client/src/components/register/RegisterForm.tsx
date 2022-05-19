@@ -215,8 +215,8 @@ const RegisterForm = () => {
             name="birthday"
             placeholder="Doğum tarihi"
             children={<Gift />}
-            validationError={cityError}
             onChange={handleDateChange}
+            validationError={birthdayError}
           />
 
           <SelectInputWithIcon

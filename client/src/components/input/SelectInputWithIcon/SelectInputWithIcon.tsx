@@ -18,7 +18,11 @@ interface IProps {
   name: string
   options: any[]
 }
-const SelectItem = styled(Row)<Pick<IProps, 'validationError'>>`
+const SelectItem = styled.div<Pick<IProps, 'validationError'>>`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border-bottom: 1px solid ${({ validationError }) => (validationError ? colors.red.primary : colors.gray.primary)};
   color: ${({ validationError }) => (validationError ? colors.red.primary : colors.gray.primary)};
   margin-bottom: 0.5rem;
