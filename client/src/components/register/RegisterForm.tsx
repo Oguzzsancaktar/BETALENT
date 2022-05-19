@@ -115,17 +115,20 @@ const RegisterForm = () => {
 
     try {
       if (validationResult) {
-        await createRegister(registerData)
+        const result = await createRegister(registerData)
 
-        toastSuccess(registerData.firstname + ' ' + registerData.lastname + ' başarı ile kaydınız oluşturuldu.')
-        setRegisterData({
-          firstname: '',
-          lastname: '',
-          phone: '',
-          email: '',
-          birthday: '',
-          city: ''
-        })
+        //@ts-ignore
+        if (result.data) {
+          toastSuccess(registerData.firstname + ' ' + registerData.lastname + ' başarı ile kaydınız oluşturuldu.')
+          setRegisterData({
+            firstname: '',
+            lastname: '',
+            phone: '',
+            email: '',
+            birthday: '',
+            city: ''
+          })
+        }
       }
     } catch (error: any) {
       setErrorMessage(error.data.errors[0])

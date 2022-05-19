@@ -24,7 +24,7 @@ const registerList = (builder: IBuilder) => {
 }
 
 const createRegister = (builder: IBuilder) => {
-  return builder.mutation<string, IRegister>({
+  return builder.mutation<any, IRegister>({
     query(registerDto) {
       return {
         url: '/register',
