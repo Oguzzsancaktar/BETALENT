@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "argon2": "^0.28.5",
+    "cloudinary": "^1.30.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "debug": "^4.3.4",
@@ -25,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.5.0",
     "mongoose": "^6.3.0",
+    "multer": "^1.4.4",
     "shortid": "^2.2.16",
     "winston": "^3.7.2"
   },

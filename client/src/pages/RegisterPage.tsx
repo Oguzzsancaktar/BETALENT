@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  CircleImage,
   JustifyBetweenRow,
   JustifyCenterColumn,
   PageWrapper,
@@ -9,7 +8,6 @@ import {
   HexagonImage
 } from '@/components'
 import colors from '@/constants/colors'
-import { url } from 'inspector'
 import styled from 'styled-components'
 
 const Left = styled(JustifyCenterColumn)`

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Button,
   Column,
@@ -12,7 +12,7 @@ import {
   SelectInputWithIcon,
   DatepickerWithIcon
 } from '@components/index'
-import { Gift, Mail, MapPin, PhoneCall, User, UserCheck, UserX } from 'react-feather'
+import { Gift, Mail, MapPin, PhoneCall, UserCheck, UserX } from 'react-feather'
 import { IRegister } from '@/models'
 import { useCreateRegisterMutation } from '@/services/registerService'
 import { isBirthdayValid, isEmailValid, isInputStringValid, isPhoneValid } from '@/utils/validationUtils'
@@ -22,8 +22,7 @@ import cityOptions from '@/constants/cities'
 import moment from 'moment'
 
 const RegisterForm = () => {
-  const [createRegister, { isError: isRegisterationRejected, isSuccess: isRegisterationSuccessfull }] =
-    useCreateRegisterMutation()
+  const [createRegister] = useCreateRegisterMutation()
 
   const [firstnameError, setFirstnameError] = useState(false)
   const [lastnameError, setLastnameError] = useState(false)
@@ -116,7 +115,7 @@ const RegisterForm = () => {
 
     try {
       if (validationResult) {
-        const result = await createRegister(registerData)
+        await createRegister(registerData)
 
         toastSuccess(registerData.firstname + ' ' + registerData.lastname + ' başarı ile kaydınız oluşturuldu.')
         setRegisterData({

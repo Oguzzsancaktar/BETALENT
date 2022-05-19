@@ -1,4 +1,4 @@
-import { Column, Row } from '@/components'
+import { Column } from '@/components'
 import React from 'react'
 import styled from 'styled-components'
 import { Input } from './styled'

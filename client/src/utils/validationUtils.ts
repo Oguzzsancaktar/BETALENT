@@ -15,7 +15,7 @@ export const isBirthdayValid = (birthday: string): boolean => {
 }
 
 export const isPhoneValid = (phone: string): boolean => {
-  const result = phone.toLowerCase().match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
+  const result = phone.toLowerCase().match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im)
   return result !== null ? true : false
 }
 
