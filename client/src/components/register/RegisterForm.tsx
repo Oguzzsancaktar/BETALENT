@@ -20,6 +20,7 @@ import colors from '@/constants/colors'
 import { toastSuccess } from '@/utils/toastUtil'
 import cityOptions from '@/constants/cities'
 import moment from 'moment'
+import { DatePicker } from '../date-picker'
 
 const RegisterForm = () => {
   const [createRegister] = useCreateRegisterMutation()
@@ -188,7 +189,7 @@ const RegisterForm = () => {
             type="text"
             children={<Mail />}
           />
-          {/* 
+          {/*
           <InputWithIcon
             value={registerData.birthday}
             validationError={birthdayError}
@@ -210,10 +211,10 @@ const RegisterForm = () => {
             children={<MapPin />}
           /> */}
 
-          <DatepickerWithIcon
-            selectedDate={registerData.birthday}
+          <DatePicker
+            // value={registerData.birthday}
             name="birthday"
-            placeholder="Doğum tarihi"
+            // placeholder="Doğum tarihi"
             children={<Gift />}
             onChange={handleDateChange}
             validationError={birthdayError}

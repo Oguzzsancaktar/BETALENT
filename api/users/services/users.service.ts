@@ -18,7 +18,7 @@ class UsersService implements CRUD {
   }
 
   async patchById(id: string, resource: PatchUserDto) {
-    return UsersDao.updateUserById(id, resource);
+    return  UsersDao.updateUserById(id, resource);
   }
 
   async readById(id: string) {
