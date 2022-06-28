@@ -121,10 +121,15 @@
   width: calc(100% - 36px);
   outline: none;
   padding: 0 0.4rem;
-  color: #6e6b7b;
+  color: #27cec5;
   height: 35px;
   background-color: inherit;
   opacity: 1 !important;
+}
+
+.flatpickr-input::placeholder{
+  color: #7babb2!important;
+
 }
 .flatpickr-weekdays {
   background: white!important;

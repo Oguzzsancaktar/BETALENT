@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 interface Props {
   height?: string
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
 interface IFormProps {

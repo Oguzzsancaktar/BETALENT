@@ -18,7 +18,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": { 
     "argon2": "^0.28.5",
     "cloudinary": "^1.30.0",
     "cors": "^2.8.5",

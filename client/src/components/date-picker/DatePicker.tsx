@@ -8,12 +8,13 @@ import { Container, IconContainer } from '../input/InputWithIcon/styled'
 import colors from '@/constants/colors'
 import { ItemContainer } from '../item-container'
 import { Label } from '../texts'
+import { Moment } from 'moment'
 
 interface IProps {
-  name: string
+  name?: string
   labelText?: string | null
   validationError?: boolean
-  value?: Date
+  value?: Date | Moment
   disabled?: boolean
   onChange: (value: Date[], dateText: string) => void
 }
@@ -24,10 +25,8 @@ export interface IStyledProps {
 }
 
 const DatePicker: React.FC<IProps> = ({ name, value = '', disabled, labelText, validationError, onChange }) => {
-  const [date, setDate] = useState(value)
-
+  
   const handleDateChange = (date: Date[], dateText) => {
-    setDate(date[0])
     onChange(date, dateText)
   }
 
@@ -46,27 +45,18 @@ const DatePicker: React.FC<IProps> = ({ name, value = '', disabled, labelText, v
                 <Clock size={20} />
               </IconContainer>
               <Flatpickr
+                name={name}
                 options={{
                   enableTime: false,
                   dateFormat: 'M/d/Y'
                 }}
                 disabled={disabled}
-                value={date}
                 onChange={handleDateChange}
-                placeholder="Select bithday"
+                placeholder="Doğum Tarihi"
               />
             </Row>
           </Container>
         </Column>
-
-        {/* <InputWithIcon
-          onChange={e => onChange(e.target.value)}
-          name={name}
-          type="text"
-          value={time}
-          onFocus={() => setShowTime(true)}
-          // onBlur={() => setShowTime(false)}
-        /> */}
       </Row>
     </Column>
   )

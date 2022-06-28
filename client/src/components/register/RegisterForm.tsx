@@ -10,21 +10,20 @@ import {
   FormErrorMessage,
   HexagonImage,
   SelectInputWithIcon,
-  DatepickerWithIcon
 } from '@components/index'
 import { Gift, Mail, MapPin, PhoneCall, UserCheck, UserX } from 'react-feather'
 import { IRegister } from '@/models'
 import { useCreateRegisterMutation } from '@/services/registerService'
 import { isBirthdayValid, isEmailValid, isInputStringValid, isPhoneValid } from '@/utils/validationUtils'
 import colors from '@/constants/colors'
-import { toastSuccess } from '@/utils/toastUtil'
+import { toastError, toastSuccess } from '@/utils/toastUtil'
 import cityOptions from '@/constants/cities'
-import moment from 'moment'
 import { DatePicker } from '../date-picker'
+import moment from 'moment'
 
 const RegisterForm = () => {
-  const [createRegister] = useCreateRegisterMutation()
-
+  const [createRegister, {isLoading:isSubmitLoading}] = useCreateRegisterMutation()
+  const [birthday,setBirthday] = useState('')
   const [firstnameError, setFirstnameError] = useState(false)
   const [lastnameError, setLastnameError] = useState(false)
   const [phoneError, setPhoneError] = useState(false)
@@ -34,12 +33,11 @@ const RegisterForm = () => {
 
   const [errorMessage, setErrorMessage] = useState('')
 
-  const [registerData, setRegisterData] = useState<IRegister>({
+  const [registerData, setRegisterData] = useState({
     firstname: '',
     lastname: '',
     phone: '',
     email: '',
-    birthday: '',
     city: ''
   })
 
@@ -76,11 +74,11 @@ const RegisterForm = () => {
       return false
     }
 
-    if (!isBirthdayValid(registerData.birthday)) {
-      setErrorMessage('Lütfen doğum tarihinizi giriniz.')
-      setBirthdayError(true)
-      return false
-    }
+    // if (!isBirthdayValid(registerData.birthday)) {
+    //   setErrorMessage('Lütfen doğum tarihinizi giriniz.')
+    //   setBirthdayError(true)
+    //   return false
+    // }
 
     if (!isInputStringValid(registerData.city)) {
       setErrorMessage('Lütfen yaşadığınız şehiri seçiniz')
@@ -92,44 +90,45 @@ const RegisterForm = () => {
   }
 
   const handleSelectChange = (e: any) => {
-    setRegisterData({
-      ...registerData,
-      city: e.value
-    })
+        const dataInstance = { ...registerData }
+        dataInstance.city = e.value
+    setRegisterData(dataInstance)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRegisterData({ ...registerData, [e.target.name]: e.target.value })
+      const dataInstance = { ...registerData }
+    dataInstance[e.target.name] = e.target.value 
+    setRegisterData(dataInstance)
   }
 
-  const handleDateChange = (date: any) => {
-    setRegisterData({
-      ...registerData,
-      birthday: moment(date).format('DD-MM-YYYY')
-    })
+  const handleDateChange = (date: any, dateString: string) => {
+    setBirthday(dateString)
   }
 
-  const handleRegisteration = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegisteration = async (e: React.MouseEvent) => {
     e.preventDefault()
 
     const validationResult = validateFormFields()
 
     try {
       if (validationResult) {
-        const result = await createRegister(registerData)
+try {
+  await createRegister({...registerData, birthday})
 
-        //@ts-ignore
-        if (result.data) {
-          toastSuccess(registerData.firstname + ' ' + registerData.lastname + ' başarı ile kaydınız oluşturuldu.')
-          setRegisterData({
-            firstname: '',
-            lastname: '',
-            phone: '',
-            email: '',
-            birthday: '',
-            city: ''
-          })
-        }
+  toastSuccess(registerData.firstname + ' ' + registerData.lastname + ' başarı ile kaydınız oluşturuldu.')
+  setRegisterData({
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    city: ''
+  })
+  setBirthday('')
+} catch (error) {
+  console.log(error);
+  
+}
+         
       }
     } catch (error: any) {
       setErrorMessage(error.data.errors[0])
@@ -137,7 +136,7 @@ const RegisterForm = () => {
   }
 
   return (
-    <Form onSubmit={handleRegisteration}>
+    <Form>
       <JustifyBetweenColumn>
         <JustifyCenterRow margin="0px 0px 5rem 0px">
           <HexagonImage
@@ -189,39 +188,17 @@ const RegisterForm = () => {
             type="text"
             children={<Mail />}
           />
-          {/*
-          <InputWithIcon
-            value={registerData.birthday}
-            validationError={birthdayError}
-            name="birthday"
-            onBlur={() => console.log('blurred')}
-            onChange={handleInputChange}
-            placeholder="Doğum Tarihi"
-            type="text"
-            children={<Gift />}
-          /> */}
-          {/* <InputWithIcon
-            value={registerData.city}
-            validationError={cityError}
-            name="city"
-            onBlur={() => console.log('blurred')}
-            onChange={handleInputChange}
-            placeholder="Yaşadığı Şehir"
-            type="text"
-            children={<MapPin />}
-          /> */}
 
           <DatePicker
-            // value={registerData.birthday}
             name="birthday"
-            // placeholder="Doğum tarihi"
-            children={<Gift />}
             onChange={handleDateChange}
             validationError={birthdayError}
+            value={moment(birthday, 'YYYY-MM-DD')}
           />
 
           <SelectInputWithIcon
-            name="city"
+            
+            name="livingCity"
             selectedOption={cityOptions.findIndex(option => option.value === registerData.city)}
             options={cityOptions}
             isClearable={true}
@@ -237,7 +214,9 @@ const RegisterForm = () => {
         </Column>
 
         <JustifyCenterRow margin="2rem 0px 0px 0px">
-          <Button>BAŞVUR</Button>
+          <Button disabled={isSubmitLoading} onClick={handleRegisteration}>
+            BAŞVUR
+          </Button>
         </JustifyCenterRow>
       </JustifyBetweenColumn>
     </Form>
