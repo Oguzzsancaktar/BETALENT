@@ -2,7 +2,7 @@ import { toastError, toastWarning } from '@/utils/toastUtil'
 import axios, { AxiosError } from 'axios'
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://betalent-api.herokuapp.com'
+  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'http://31.220.111.132'
 })
 
 axiosInstance.interceptors.response.use(
