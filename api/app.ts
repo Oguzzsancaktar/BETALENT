@@ -62,7 +62,7 @@ routes.push(new RegisterRoutes(app));
 
 const runningMessage = `Server running at http://localhost:${PORT}`;
 
-app.get("/", (req: express.Request, res: express.Response) => {
+app.get("/api", (req: express.Request, res: express.Response) => {
   res.status(200).send(runningMessage);
 });
 
