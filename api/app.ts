@@ -1,10 +1,12 @@
 const dotenv = require("dotenv");
 import helmet from "helmet";
+const path = require("path");
 
 const dotenvResult = dotenv.config();
 if (dotenvResult.error) {
   throw dotenvResult.error;
 }
+
 
 import { AuthRoutes } from "./auth/auth.routes.config";
 import express from "express";
@@ -72,6 +74,12 @@ if (!process.env.DEBUG) {
     loggerOptions.level = "http"; // for non-debug test runs, squelch entirely
   }
 }
+
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/kayit", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 server.listen(PORT, () => {
   routes.forEach((route: CommonRoutesConfig) => {
