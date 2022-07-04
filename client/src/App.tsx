@@ -18,8 +18,8 @@ function App() {
       <GlobalStyle />
       <GlobalModal />
       <Routes>
-        <Route path="/*" element={<Navigate replace to="/register" />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/*" element={<Navigate replace to="/kayit" />} />
+        <Route path="/kayit" element={<RegisterPage />} />
 
         <Route
           path="/"
