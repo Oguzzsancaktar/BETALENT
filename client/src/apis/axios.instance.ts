@@ -2,8 +2,7 @@ import { toastError, toastWarning } from '@/utils/toastUtil'
 import axios, { AxiosError } from 'axios'
 
 const axiosInstance = axios.create({
-  // baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : 'http://31.220.111.132'
- baseURL:  'http://localhost:8080'
+  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : process.env.REACT_APP_API_URL
 })
 
 axiosInstance.interceptors.response.use(
