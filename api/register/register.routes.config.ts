@@ -15,7 +15,7 @@ export class RegisterRoutes extends CommonRoutesConfig {
 
   configureRoutes(): express.Application {
     this.app
-      .route("/register")
+      .route("/api/register")
       .get(
         jwtMiddleware.validJWTNeeded,
         permissionMiddleware.permissionFlagRequired(
