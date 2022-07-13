@@ -9,7 +9,7 @@ import {
   JustifyCenterRow,
   FormErrorMessage,
   HexagonImage,
-  SelectInputWithIcon,
+  SelectInputWithIcon
 } from '@components/index'
 import { Gift, Mail, MapPin, PhoneCall, UserCheck, UserX } from 'react-feather'
 import { IRegister } from '@/models'
@@ -22,8 +22,8 @@ import { DatePicker } from '../date-picker'
 import moment from 'moment'
 
 const RegisterForm = () => {
-  const [createRegister, {isLoading:isSubmitLoading}] = useCreateRegisterMutation()
-  const [birthday,setBirthday] = useState('')
+  const [createRegister, { isLoading: isSubmitLoading }] = useCreateRegisterMutation()
+  const [birthday, setBirthday] = useState('')
   const [firstnameError, setFirstnameError] = useState(false)
   const [lastnameError, setLastnameError] = useState(false)
   const [phoneError, setPhoneError] = useState(false)
@@ -62,7 +62,7 @@ const RegisterForm = () => {
       return false
     }
 
-    if (!isPhoneValid(registerData.phone)) {
+    if (!isInputStringValid(registerData.phone)) {
       setErrorMessage('Lütfen geçerli bir telefon numarası giriniz.')
       setPhoneError(true)
       return false
@@ -90,14 +90,14 @@ const RegisterForm = () => {
   }
 
   const handleSelectChange = (e: any) => {
-        const dataInstance = { ...registerData }
-        dataInstance.city = e.value
+    const dataInstance = { ...registerData }
+    dataInstance.city = e.value
     setRegisterData(dataInstance)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const dataInstance = { ...registerData }
-    dataInstance[e.target.name] = e.target.value 
+    const dataInstance = { ...registerData }
+    dataInstance[e.target.name] = e.target.value
     setRegisterData(dataInstance)
   }
 
@@ -112,23 +112,21 @@ const RegisterForm = () => {
 
     try {
       if (validationResult) {
-try {
-  await createRegister({...registerData, birthday})
+        try {
+          await createRegister({ ...registerData, birthday })
 
-  toastSuccess(registerData.firstname + ' ' + registerData.lastname + ' başarı ile kaydınız oluşturuldu.')
-  setRegisterData({
-    firstname: '',
-    lastname: '',
-    phone: '',
-    email: '',
-    city: ''
-  })
-  setBirthday('')
-} catch (error) {
-  console.log(error);
-  
-}
-         
+          toastSuccess(registerData.firstname + ' ' + registerData.lastname + ' başarı ile kaydınız oluşturuldu.')
+          setRegisterData({
+            firstname: '',
+            lastname: '',
+            phone: '',
+            email: '',
+            city: ''
+          })
+          setBirthday('')
+        } catch (error) {
+          console.log(error)
+        }
       }
     } catch (error: any) {
       setErrorMessage(error.data.errors[0])
@@ -197,7 +195,6 @@ try {
           />
 
           <SelectInputWithIcon
-            
             name="livingCity"
             selectedOption={cityOptions.findIndex(option => option.value === registerData.city)}
             options={cityOptions}

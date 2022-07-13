@@ -7,7 +7,6 @@ if (dotenvResult.error) {
   throw dotenvResult.error;
 }
 
-
 import { AuthRoutes } from "./auth/auth.routes.config";
 import express from "express";
 import * as http from "http";
